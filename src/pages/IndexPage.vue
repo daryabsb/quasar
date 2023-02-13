@@ -1,10 +1,20 @@
 <template>
-  <q-page class="flex flex-center">
-    <q-btn-group push>
-      <q-btn color="red" glossy text-color="white" label="First" icon="verified_user" />
-      <q-btn color="amber" glossy text-color="black" push label="Second" />
-      <q-btn color="orange" glossy text-color="black" push label="Third" />
-    </q-btn-group>
+  <q-page class=" row">
+    <q-page :style-fn="myTweak" padding class=".col-12 .col-md-6 " style="height: 460px;">
+      <q-btn-group push>
+        <q-btn color="red" text-color="white" label="First" icon="verified_user" />
+        <q-btn color="amber" text-color="black" label="Second" />
+        <q-btn color="orange" text-color="black" label="Third" />
+      </q-btn-group>
+    </q-page>
+    <q-page :style-fn="myTweak" padding class=".col-12 .col-md-6 self-center" style="height: 460px;">
+      <q-btn-group>
+        <q-btn color="red" text-color="white" label="First" icon="verified_user" />
+        <q-btn color="amber" text-color="black" label="Second" />
+        <q-btn color="orange" text-color="black" label="Third" />
+      </q-btn-group>
+    </q-page>
+
 
   </q-page>
 </template>

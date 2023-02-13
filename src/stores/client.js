@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { useStorage } from "@vueuse/core";
-import { useUserStore } from "@/stores/user";
+import { useUserStore } from "../stores/user";
 
-import clientsAPI from "@/services/clientsAPI";
-import appointmentsAPI from "@/services/appointmentsAPI";
+import clientsAPI from "../services/clientsAPI";
+import appointmentsAPI from "../services/appointmentsAPI";
 import axios from "axios";
 
 export const useClientStore = defineStore("client", {
