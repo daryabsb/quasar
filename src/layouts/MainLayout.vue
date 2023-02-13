@@ -1,24 +1,31 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class="q-py-md">
+    <q-header elevated>
       <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-btn flat round dense icon="menu" class="q-mr-sm" @click="toggleLeftDrawer" />
+        <q-avatar>
+          <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+        </q-avatar>
 
-        <q-toolbar-title>
-          Quasar test App
-        </q-toolbar-title>
-        <q-space></q-space>
-        <q-btn-toggle v-model="model" flat stretch toggle-color="yellow" :options="options" size="lg"></q-btn-toggle>
-        <q-space></q-space>
-        <div>Quasar v{{ $q.version }}</div>
+        <q-toolbar-title>Quasar Framework</q-toolbar-title>
+
+        <q-btn flat round dense icon="whatshot" />
       </q-toolbar>
+
+      <q-tabs v-model="model">
+        <q-tab v-for="tab in options" :key="tab.value">{{ tab.label }}</q-tab>
+      </q-tabs>
     </q-header>
 
+    <!-- <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+    <q-tabs v-model="model" flat stretch>
+      <q-tab v-for="tab in options" :key="tab.value">{{ tab.label }}</q-tab>
+    </q-tabs> -->
     <q-drawer v-model="leftDrawerOpen" show-if-above :mini="!leftDrawerOpen || miniState" @click.capture="drawerClick"
       :breakpoint="500" bordered class="bg-grey-3">
       <template v-slot:mini>
         <q-scroll-area class="fit mini-slot cursor-pointer">
-          <div class="q-py-lg">
+          <div>
             <div class="column items-start">
               <q-icon name="inbox" color="blue" class="mini-icon" />
               <q-icon name="star" color="orange" class="mini-icon" />
@@ -69,13 +76,16 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-footer bordered class="bg-grey-8 text-white q-py-md q-px-lg">
+    <q-footer bordered class="bg-grey-8 flex text-white q-px-lg">
       <q-toolbar>
         <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          <div>Title</div>
+          <div class="flex space-x-5">
+            <q-avatar>
+              <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+            </q-avatar>
+            <div>Title</div>
+          </div>
+
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
