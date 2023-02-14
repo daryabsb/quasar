@@ -6,6 +6,10 @@ node_modules
 .quasar
 /dist
 
+# BACKEND
+backend/venv
+backend/db.sqlite3
+
 # Cordova related directories and files
 /src-cordova/node_modules
 /src-cordova/platforms

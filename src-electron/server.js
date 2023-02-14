@@ -3,12 +3,12 @@ import { join } from "node:path";
 
 const backendPath = join(__dirname, "../../backend");
 
+// console.log("backendPath", join(backendPath, "\\venv\\Scripts\\/manage.py"));
 export const startDjangoServer = () => {
-  console.log("backendPath", backendPath);
   const djangoBackend = spawn(
     join(backendPath, "\\venv\\Scripts\\python.exe"),
 
-    [join(backendPath, "/manage.py"), "runserver", "--noreload"]
+    [join(backendPath, "\\manage.py"), "runserver", "--noreload"]
   );
   djangoBackend.stdout.on("data", (data) => {
     console.log(`stdout:\n${data}`);
