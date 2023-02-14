@@ -45,6 +45,8 @@ export default function useFetchData(month: any): UseFetchDataReturn {
       //   const config = {
       //      additional config options
       //   };
+      console.log("month.value", month.value);
+
       const response = await axios.get<Data>(
         `http://127.0.0.1:8000/appointment/appointments/?month=${month.value}`,
         config

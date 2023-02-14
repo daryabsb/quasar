@@ -5,11 +5,16 @@
 
       <q-header elevated class="text-white" style="background: #24292e" height-hint="61.59">
         <q-toolbar class="q-py-sm q-px-md">
-          <q-btn round dense flat :ripple="false" :icon="fabGithub" size="19px" color="white" class="q-mr-sm" no-caps />
+          <router-link to="/">
+            <q-btn round dense flat :ripple="false" :icon="fasUserDoctor" size="19px" color="white" class="q-mr-sm"
+              no-caps />
+          </router-link>
+
+
 
           <q-select ref="search" dark dense standout use-input hide-selected class="GL__toolbar-select" color="black"
             :stack-label="false" label="Search or jump to..." v-model="text" :options="filteredOptions" @filter="filter"
-            style="width: 300px">
+            style="width: 350px">
 
             <template v-slot:append>
               <img src="https://cdn.quasar.dev/img/layout-gallery/img-github-search-key-slash.svg">
@@ -42,30 +47,34 @@
               </q-item>
             </template>
           </q-select>
-
+          <q-space></q-space>
           <div v-if="$q.screen.gt.sm"
-            class="GL__toolbar-link q-ml-xs q-gutter-md text-body2 text-weight-bold row items-center no-wrap">
-            <a href="javascript:void(0)" class="text-white">
-              Pull requests
+            class="GL__toolbar-link q-ml-xs q-gutter-md text-body2 text-weight-bold row items-center no-wrap uppercase space-x-8">
+            <a href="#/clients" class="text-white">
+              Clients
             </a>
-            <a href="javascript:void(0)" class="text-white">
-              Issues
+            <a href="#/appointments" class="text-white">
+              Appointments
             </a>
-            <a href="javascript:void(0)" class="text-white">
-              Marketplace
+            <a href="#/visits" class="text-white">
+              Visits
             </a>
-            <a href="javascript:void(0)" class="text-white">
-              Explore
+            <a href="#/users" class="text-white">
+              Users
             </a>
+            <a href="#/playground" class="text-white">
+              Playground
+            </a>
+
           </div>
 
           <q-space />
 
           <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
-            <q-btn v-if="$q.screen.gt.xs" dense flat round size="sm" icon="notifications" />
-            <q-btn v-if="$q.screen.gt.xs" dense flat>
+            <q-btn v-if="$q.screen.gt.xs" dense flat round size="md" icon="notifications" />
+            <q-btn v-if="$q.screen.gt.xs" dense flat size="md">
               <div class="row items-center no-wrap">
-                <q-icon name="add" size="20px" />
+                <q-icon name="add" size="28px" />
                 <q-icon name="arrow_drop_down" size="16px" style="margin-left: -2px" />
               </div>
               <q-menu auto-close>
@@ -92,7 +101,7 @@
             </q-btn>
 
             <q-btn dense flat no-wrap>
-              <q-avatar rounded size="20px">
+              <q-avatar rounded size="30px">
                 <img src="https://cdn.quasar.dev/img/avatar3.jpg">
               </q-avatar>
               <q-icon name="arrow_drop_down" size="16px" />
@@ -155,7 +164,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { fabGithub } from '@quasar/extras/fontawesome-v6'
+import { fasUserDoctor } from '@quasar/extras/fontawesome-v6'
 
 import Provider from "../providers/index.vue"
 

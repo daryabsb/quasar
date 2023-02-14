@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, provide, readonly } from 'vue';
-// import Fetches from "./Fetches.vue"
-// import Modals from "./Modals.vue"
+import Fetches from "./Fetches.vue"
+import Modals from "./Modals.vue"
 
 
 const isSearchOpen = ref(false)
@@ -47,7 +47,7 @@ provide("quickview", {
 });
 </script>
 <template>
-  <!-- <Fetches />
-    <Modals /> -->
+  <Fetches />
+  <Modals />
   <slot />
 </template>

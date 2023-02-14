@@ -1,8 +1,8 @@
 import { ref } from "vue";
 import axios from "axios";
-import { useClientStore } from "@/stores/client.js";
-import { useProgressStore } from "@/stores/progress.js";
-import fetchClientAppointmentsData from "@/composables/useFetchAppointmentDetail";
+import { useClientStore } from "../stores/client.js";
+import { useProgressStore } from "../stores/progress.js";
+import fetchClientAppointmentsData from "../composables/useFetchAppointmentDetail";
 import { Client, Attachment, Examination, Appointment } from "./interfaces";
 
 const store = useClientStore(); // store has all the config, clients and appointments stuff

@@ -14,14 +14,13 @@ module.exports = {
 -->
 <template>
     <TransitionRoot as="template" :show="open">
-        <Dialog as="div" class="relative z-50" @close="toggleQuickView">
+        <Dialog as="div" class="relative z-10" @close="toggleQuickView">
             <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
                 leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
                 <div class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block" />
             </TransitionChild>
 
             <div class="fixed inset-0 z-10 overflow-y-auto">
-                <div class="absolute inset-0 bg-zinc-900 opacity-70" />
                 <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
                     <!-- This element is to trick the browser into centering the modal contents. -->
                     <span class="hidden md:inline-block md:h-screen md:align-middle" aria-hidden="true">&#8203;</span>
@@ -31,16 +30,16 @@ module.exports = {
                         leave-from="opacity-100 translate-y-0 md:scale-100"
                         leave-to="opacity-0 translate-y-4 md:translate-y-0 md:scale-95">
                         <DialogPanel
-                            class="h-[36em] flex w-full transform text-left  text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
-                            <Suspense>
-                                <div
-                                    class="relative flex w-full items-center border overflow-hidden bg-white px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
-                                    <button type="button"
-                                        class="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
-                                        @click="toggleQuickView">
-                                        <span class="sr-only">Close</span>
-                                        <XMarkIcon class="h-6 w-6" aria-hidden="true" />
-                                    </button>
+                            class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
+                            <div
+                                class="relative flex w-full items-center overflow-hidden bg-white px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+                                <button type="button"
+                                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
+                                    @click="toggleQuickView">
+                                    <span class="sr-only">Close</span>
+                                    <XMarkIcon class="h-6 w-6" aria-hidden="true" />
+                                </button>
+                                <Suspense>
                                     <div v-if="client"
                                         class="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:items-center lg:gap-x-8">
                                         <div
@@ -142,12 +141,6 @@ module.exports = {
                                                                 guide</a>
                                                         </div>
 
-                                                        <!-- <div class="loaders-container ">
-                                                            <div class="container-plaza">
-                                                                <div class="loading-box"></div>
-                                                            </div>
-                                                        </div> -->
-
                                                         <RadioGroup v-model="selectedSize" class="mt-2">
                                                             <RadioGroupLabel class="sr-only">
                                                                 Choose a size
@@ -192,15 +185,11 @@ module.exports = {
                                             </section>
                                         </div>
                                     </div>
-                                </div>
-                                <template #fallback>
-                                    <div class="loaders-container ">
-                                        <div class="container-plaza">
-                                            <div class="loading-box"></div>
-                                        </div>
-                                    </div>
-                                </template>
-                            </Suspense>
+                                    <template #fallback>
+                                        Loading ................
+                                    </template>
+                                </Suspense>
+                            </div>
                         </DialogPanel>
                     </TransitionChild>
                 </div>
@@ -223,16 +212,12 @@ import {
     TransitionRoot,
 } from "@headlessui/vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
-import { StarIcon, HeartIcon, } from "@heroicons/vue/20/solid";
-import AsyncLoader from "../shared/AsyncLoader.vue"
+import { StarIcon } from "@heroicons/vue/20/solid";
 
-
-import { useClientStore } from "../../stores/client"
-import fetchClientData from "../../composables/useFetchClientDetails"
-
+import { useClientStore } from "@/stores/client"
 const store = useClientStore()
 const router = useRouter()
-// const client = ref(null)
+const client = ref(null)
 const { open, clientID, toggleQuickView } = inject("quickview");
 const fetchPerson = async () => {
     console.log(clientID.value);
@@ -241,30 +226,7 @@ const fetchPerson = async () => {
     client.value = res.data
     console.log(client.value)
 }
-
-const client = ref(null)
-const status = ref(null)
-const examination = ref(null)
-const attachments = ref([])
-const details = ref(null)
-onMounted(async () => {
-    // await fetchPerson()
-
-
-    const {
-        client: clientData,
-        status: statusData,
-        attachments: attachmentsData,
-        examination: examinationData,
-        details: detailsData
-    } = await fetchClientData(clientID.value);
-    client.value = clientData;
-    status.value = statusData;
-    examination.value = examinationData;
-    attachments.value = attachmentsData;
-    details.value = detailsData;
-
-})
+onMounted(fetchPerson)
 
 const navigateToClientDetails = (id) => {
     router.push(`/clients/${id}`)
@@ -320,56 +282,3 @@ const product = {
 const selectedColor = ref(product.colors[0]);
 const selectedSize = ref(product.sizes[2]);
 </script>
-<style>
-.loaders-container {
-    padding: 20px;
-    margin: 0 auto;
-    width: 700px;
-    text-align: center;
-    font-size: 0;
-    background-color: aquamarine;
-}
-
-.loaders-container .container-plaza {
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    padding: 30px;
-    width: 25%;
-    height: 140px;
-}
-
-.loading-box {
-    position: relative;
-    box-sizing: border-box;
-    border: 4px solid #fff;
-    width: 80px;
-    height: 80px;
-    animation: spin 3s infinite linear;
-}
-
-.loading-box:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    border: 4px solid #fff;
-    width: 60px;
-    height: 60px;
-    animation: pulse 1.5s infinite ease;
-}
-
-@keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes pulse {
-    50% {
-        border-width: 30px;
-    }
-}
-</style>
