@@ -25,12 +25,13 @@
 
       </vue-cal>
     </div>
-    <section class="mt-12 md:mt-0 md:pl-14 md:divide-y md:divide-gray-200">
-      <h1 class=" font-semibold text-3xl text-gray-900 shadow">Schedule for <time> {{
+    <section class="mt-12 md:mt-0 md:pl-14 ">
+      <h1 class=" font-semibold text-3xl text-gray-900 pb-2">Schedule for <time> {{
         moment(selectedDate).format("MMMM DD, YYYY")
       }}</time>
       </h1>
-      <ol class="mt-4 space-y-1 text-sm leading-6 border divide-y text-gray-500">
+      <q-separator></q-separator>
+      <ol class="mt-4 space-y-1 text-sm leading-6  text-gray-500">
         <li v-for="item in appointments" :key="item.id"
           class="group relative flex items-center space-x-4 rounded-xl py-2 px-4 focus-within:bg-gray-100 hover:bg-gray-100"
           @click="toggleQuickView(item.client)">

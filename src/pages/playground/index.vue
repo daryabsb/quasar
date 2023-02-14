@@ -1,7 +1,6 @@
 <template>
     <div class="relative isolate overflow-hidden ">
-        <div
-            class="absolute border top-64 left-32 h-64 w-64  backdrop-blur-sm shadow-sm hover:shadow-2xl hover:-translate-x-1 hover:-translate-y-1">
+        <div class="absolute border top-64 left-32 h-64 w-64    backdrop-blur-sm shadow-sm">
             <div class="w-full h-full flex justify-center items-center">
                 <h1 class="text-white drop-shadow-sm text-4xl">Blures</h1>
 
