@@ -24,11 +24,25 @@
 
 
               <q-card-section horizontal class=" overflow-hidden">
-                <img class="col h-32 aspect-1 object-cover object-center" :src="client.image" />
+                <img class="col h-36 aspect-w-1 object-cover object-center" :src="client.image" />
 
                 <q-card-section class=" overflow-hidden">
                   <div class="text-h6">{{ client.name }}</div>
-                  <div class="text-subtitle2">by John Doe</div>
+                  <q-item-label caption>Age: <span class="capitalize font-semibold text-zinc-900">{{
+                    client.age
+                  }}</span></q-item-label>
+                  <q-item-label caption>Sex: <span class="capitalize font-semibold text-zinc-900">{{
+                    client.gender
+                  }}</span>
+                  </q-item-label>
+                  <q-item-label caption>Height: <span class="capitalize font-semibold text-zinc-900">{{
+                    status.height
+                  }}</span>
+                  </q-item-label>
+                  <q-item-label caption>Weight: <span class="capitalize font-semibold text-zinc-900">{{
+                    status.weight
+                  }}</span>
+                  </q-item-label>
                 </q-card-section>
                 <q-card-actions vertical dense class="justify-around">
                   <!-- <q-btn flat round color="red" icon="favorite" />
@@ -40,7 +54,9 @@
                         <q-icon color="red" name="favorite" />
                       </q-item-section>
                       <q-item-section>
-                        <q-item-label>Bar XYZ: <q-item-label caption>30%</q-item-label></q-item-label>
+                        <q-item-label>Heart: <q-item-label caption class="text-green-600">{{
+                          status.heart_condition
+                        }}</q-item-label></q-item-label>
                       </q-item-section>
                     </q-item>
                     <q-item dense clickable>

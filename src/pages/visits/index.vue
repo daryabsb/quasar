@@ -1,3 +1,6 @@
 <template>
-    <h1>Visits</h1>
+  <Loading />
 </template>
+<script setup>
+import Loading from "../../components/shared/Loading.vue"
+</script>
