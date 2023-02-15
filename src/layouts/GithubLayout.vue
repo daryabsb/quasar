@@ -101,8 +101,8 @@
             </q-btn>
 
             <q-btn dense flat no-wrap>
-              <q-avatar rounded size="30px">
-                <img src="https://cdn.quasar.dev/img/avatar3.jpg">
+              <q-avatar v-if="user && user.image" rounded size="40px">
+                <img :src="user.image">
               </q-avatar>
               <q-icon name="arrow_drop_down" size="16px" />
 
@@ -110,7 +110,7 @@
                 <q-list dense>
                   <q-item class="GL__menu-link-signed-in">
                     <q-item-section>
-                      <div>Signed in as <strong>Mary</strong></div>
+                      <div>Signed in as <strong>{{ user.name }}</strong></div>
                     </q-item-section>
                   </q-item>
                   <q-separator />
@@ -146,7 +146,7 @@
                     <q-item-section>Settings</q-item-section>
                   </q-item>
                   <q-item clickable class="GL__menu-link">
-                    <q-item-section>Sign out</q-item-section>
+                    <q-item-section @click="signOut">Sign out</q-item-section>
                   </q-item>
                 </q-list>
               </q-menu>
@@ -214,10 +214,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { fasUserDoctor } from '@quasar/extras/fontawesome-v6'
-
+import { useRouter } from "vue-router"
+import { useUserStore } from "../stores/user"
 import Provider from "../providers/index.vue"
+
+// USER RELATED
+const store = useUserStore();
+const router = useRouter()
+const user = computed(() => store.useUser);
+const signOut = () => {
+  store.signOut()
+  router.push("/login")
+
+}
 
 const stringOptions = [
   'quasarframework/quasar',

@@ -22,6 +22,15 @@ const signIn = async () => {
   email.value = "";
   password.value = "";
   router.push({ name: "preloader" });
+
+  if (!register.value)
+    if (!emailField.value.hasError && (!passwordField.value.hasError)) {
+      $q.notify({
+        icon: 'done',
+        color: 'positive',
+        message: 'Authorization'
+      })
+    }
 };
 
 
@@ -122,7 +131,7 @@ function switchVisibility() {
 
                 </q-card-section>
                 <q-card-section>
-                  <q-fab color="primary" @click="switchTypeForm" icon="add" class="absolute"
+                  <q-fab color="primary" @click="switchTypeForm" icon="add" class="absolute -z-10"
                     style="top: 0; right: 12px; transform: translateY(-50%);">
                     <q-tooltip>
 
@@ -134,6 +143,7 @@ function switchVisibility() {
                     <q-input ref="emailField" :rules="[required, isEmail, short]" square type="email" v-model="email"
                       clearable lazy-rules label="Email">
                       <template v-slot:prepend>
+
                         <q-icon name="email" />
                       </template>
                     </q-input>
@@ -168,7 +178,7 @@ Password">
                 </q-card-section>
 
                 <q-card-actions class="q-px-lg">
-                  <q-btn unelevated size="lg" color="secondary" @click="submit" class="full-width text-white"
+                  <q-btn unelevated size="lg" color="secondary" @click="signIn" class="full-width text-white"
                     :label="btnLabel" />
                 </q-card-actions>
                 <q-card-section v-if="!register" class="text-center q-pa-sm">

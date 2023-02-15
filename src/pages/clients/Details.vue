@@ -23,11 +23,11 @@
             <q-card flat>
 
 
-              <q-card-section horizontal class=" overflow-hidden">
-                <img class="col h-36 aspect-w-1 object-cover object-center" :src="client.image" />
+              <q-card-section horizontal>
+                <img class="col w-40 aspect-1 object-cover object-center" :src="client.image" />
 
                 <q-card-section class=" overflow-hidden">
-                  <div class="text-h6">{{ client.name }}</div>
+                  <div class="text-xl font-bold text-gray-900 sm:text-2xl mb-2">{{ client.name }}</div>
                   <q-item-label caption>Age: <span class="capitalize font-semibold text-zinc-900">{{
                     client.age
                   }}</span></q-item-label>
@@ -44,6 +44,39 @@
                   }}</span>
                   </q-item-label>
                 </q-card-section>
+                <q-card-actions vertical dense class="justify-around">
+                  <!-- <q-btn flat round color="red" icon="favorite" />
+                    <q-btn flat round color="accent" icon="bookmark" />
+                    <q-btn flat round color="primary" icon="share" /> -->
+                  <q-list>
+                    <q-item dense clickable>
+                      <q-item-section avatar>
+                        <q-icon color="red" name="favorite" />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label>Heart: <q-item-label caption class="text-green-600">{{
+                          status.heart_condition
+                        }}</q-item-label></q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    <q-item dense clickable>
+                      <q-item-section avatar>
+                        <q-icon color="primary" name="bookmark" />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label>Bar XYZ: <q-item-label caption>30%</q-item-label></q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    <q-item dense clickable>
+                      <q-item-section avatar>
+                        <q-icon color="green" name="share" />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label>Bar XYZ: <q-item-label caption>30%</q-item-label></q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-card-actions>
                 <q-card-actions vertical dense class="justify-around">
                   <!-- <q-btn flat round color="red" icon="favorite" />
                     <q-btn flat round color="accent" icon="bookmark" />
