@@ -130,8 +130,9 @@ function switchVisibility() {
                     </q-tooltip>
                   </q-fab>
                   <q-form class="q-px-sm q-pt-xl">
-                    <q-input ref="emailField" square clearable v-model="email" type="email" lazy-rules
-                      :rules="[required, isEmail, short]" label="Email">
+
+                    <q-input ref="emailField" :rules="[required, isEmail, short]" square type="email" v-model="email"
+                      clearable lazy-rules label="Email">
                       <template v-slot:prepend>
                         <q-icon name="email" />
                       </template>

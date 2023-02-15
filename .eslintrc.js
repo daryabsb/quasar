@@ -66,11 +66,12 @@ module.exports = {
         additionalDirectives: ["foo"], // checks v-foo directive
       },
     ],
-    "vue/multi-word-component-names": [
-      "warn",
-      {
-        ignores: ["Index", "index"],
-      },
-    ],
+    "vue/multi-word-component-names": "off",
+    // [
+    //   "warn",
+    //   {
+    //     ignores: ["Index", "index"],
+    //   },
+    // ],
   },
 };

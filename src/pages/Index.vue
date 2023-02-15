@@ -24,6 +24,7 @@
         </main>
       </div>
     </div>
+
   </q-layout>
 </template>
 
